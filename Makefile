@@ -6,15 +6,15 @@
 #    By: jsauvain <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/30 12:04:13 by jsauvain          #+#    #+#              #
-#    Updated: 2022/07/05 16:07:19 by jsauvain         ###   ########.fr        #
+#    Updated: 2022/07/06 13:58:50 by jsauvain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS_S = server.c get_bin.c
+SRCS = server.c get_bin.c
 
 SRCS_C = client.c send_binaries.c
 
-OBJS_S = $(SRCS_S:.c=.o)
+OBJS = $(SRCS:.c=.o)
 
 OBJS_C = $(SRCS_C:.c=.o)
 
@@ -22,7 +22,7 @@ GCC = gcc
 
 FLAGS = -Wall -Wextra -Werror -g3
 
-NAME_S = server
+NAME = server
 
 NAME_C = client
 
@@ -33,24 +33,20 @@ CLR = clear
 .c.o:
 			$(GCC) $(FLAGS) -c $< -o $(<:.c=.o)
 
-all: $(NAME_S) $(NAME_C)
+all: $(NAME)
+
+$(NAME): $(OBJS) $(OBJS_C)
 			make -C libft
-			$(GCC) $(FLAGS) -Llibft -lft
-
-$(NAME_S): $(OBJS_S)
-			$(CLR)
-			$(GCC) $(FLAGS) -o $(NAME_S) $(OBJS_S)
-
-$(NAME_C): $(OBJS_C)
-			$(GCC) $(FLAGS) -o $(NAME_C) $(OBJS_C)
-
+			$(GCC) $(FLAGS) -o $(NAME) $(OBJS) -Llibft -lft
+			$(GCC) $(FLAGS) -o $(NAME_C) $(OBJS_C) -Llibft -lft
+			
 clean:
 			make clean -C libft
-			$(RM) $(OBJS_S) $(OBJS_C)
+			$(RM) $(OBJS) $(OBJS_C)
 
 fclean: clean
 			make fclean -C libft
-			$(RM) $(NAME_S) $(NAME_C)
+			$(RM) $(NAME) $(NAME_C)
 
 re: fclean all
 

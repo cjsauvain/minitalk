@@ -6,7 +6,7 @@
 #    By: jsauvain <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/12 15:21:43 by jsauvain          #+#    #+#              #
-#    Updated: 2022/06/30 12:07:27 by jsauvain         ###   ########.fr        #
+#    Updated: 2022/07/06 13:40:03 by jsauvain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,18 +18,14 @@ SRCS = ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint
 		ft_strtrim.c ft_strmapi.c ft_striteri.c ft_itoa.c ft_split.c ft_format.c \
 		ft_printf.c ft_putchar.c ft_putnbr.c ft_putstr.c ft_unsigned_putnbr.c \
 		low_hexa.c put_hexa_ptr.c to_find.c up_hexa.c get_next_line.c \
-		get_next_line_utils.c
-
-BSRCS = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c \
-		ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c
+		get_next_line_utils.c ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \
+		ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c
 
 GCC = gcc
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -g3
 
-OBJS = ${SRCS:.c=.o}
-
-BONUS = ${BSRCS:.c=.o} 
+OBJS = $(SRCS:.c=.o)
 
 NAME = libft.a
 
@@ -37,23 +33,19 @@ RM = rm -f
 
 AR = ar rcs
 
-all: $(NAME) bonus
-
-bonus: ${BONUS}
-		${AR} $(NAME) ${BONUS}
+all: $(NAME)
 
 clean:
-		${RM} ${OBJS} ${BONUS}
+		$(RM) $(OBJS)
 
 .c.o:
-	${GCC} ${FLAGS} -c $< -o ${<:.c=.o}
+	$(GCC) $(FLAGS) -c $< -o $(<:.c=.o)
 
 fclean: clean
-		${RM} $(NAME)
+		$(RM) $(NAME)
 
-$(NAME): ${OBJS}
-		${AR} $(NAME) ${OBJS}
-
+$(NAME): $(OBJS)
+		$(AR) $(NAME) $(OBJS)
 
 re: fclean all
 

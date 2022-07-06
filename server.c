@@ -6,7 +6,7 @@
 /*   By: jsauvain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 11:06:03 by jsauvain          #+#    #+#             */
-/*   Updated: 2022/07/05 16:11:34 by jsauvain         ###   ########.fr       */
+/*   Updated: 2022/07/06 14:11:21 by jsauvain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,11 @@
 int	main(void)
 {
 	pid_t	pid;
-	int		i;
-	int		nb;
 
 	pid = getpid();
-	i = 0;
-	nb = 0;
-	ft_printf("%d", pid);
-	signal(SIGUSR1, &get_bin(SIGUSR1, &i, &nb));
-	signal(SIGUSR2, &get_bin(SIGUSR2, &i, &nb));
-	if (nb == 7)
-	{
-		i = 0;
-		nb = 0;
-	}
+	ft_printf("%d\n", pid);
+	signal(SIGUSR1, get_bin);
+	signal(SIGUSR2, get_bin);
 	while (1)
-		usleep(1);;
+		usleep(1);
 }

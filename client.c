@@ -6,7 +6,7 @@
 /*   By: jsauvain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 12:10:56 by jsauvain          #+#    #+#             */
-/*   Updated: 2022/07/05 15:33:13 by jsauvain         ###   ########.fr       */
+/*   Updated: 2022/07/06 14:07:57 by jsauvain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 int	main(int argc, char **argv)
 {
-	int	pid;
+	pid_t	pid;
 
+	(void)argc;
 	pid = ft_atoi(argv[1]);
 	send_binaries(pid, argv[2]);
 }

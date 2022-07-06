@@ -6,13 +6,13 @@
 /*   By: jsauvain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 10:57:27 by jsauvain          #+#    #+#             */
-/*   Updated: 2022/06/30 11:58:53 by jsauvain         ###   ########.fr       */
+/*   Updated: 2022/07/06 14:12:17 by jsauvain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	strlen_gnl(char *s, int n)
+int	strlen_g(char *s, int n)
 {
 	int	i;
 
@@ -42,7 +42,7 @@ char	*strjoin(char *dst, char *src)
 
 	i = 0;
 	j = 0;
-	new = ft_calloc((strlen_gnl(dst, 0) + strlen_gnl(src, 0) + 1), sizeof(char));
+	new = ft_calloc((strlen_g(dst, 0) + strlen_g(src, 0) + 1), sizeof(char));
 	if (new == NULL)
 		return (new);
 	if (dst != NULL)
@@ -67,7 +67,7 @@ char	*get_first_line(char *line, char *dst)
 	j = 0;
 	if (dst_checked(dst) == 1)
 	{
-		line = ft_calloc((strlen_gnl(dst, 1) + 1), sizeof(char));
+		line = ft_calloc((strlen_g(dst, 1) + 1), sizeof(char));
 		if (line == NULL)
 			return (line);
 		while (dst[j] != '\n')
@@ -76,7 +76,7 @@ char	*get_first_line(char *line, char *dst)
 	}
 	else
 	{
-		line = ft_calloc((strlen_gnl(dst, 0) + 1), sizeof(char));
+		line = ft_calloc((strlen_g(dst, 0) + 1), sizeof(char));
 		if (line == NULL)
 			return (line);
 		while (dst[j])
@@ -94,7 +94,7 @@ char	*modify_dst(char *dst, char *line)
 	tmp = ft_calloc(1, sizeof(char));
 	if (tmp == NULL)
 		return (tmp);
-	temp = dst + strlen_gnl(line, 0);
+	temp = dst + strlen_g(line, 0);
 	tmp = strjoin(tmp, temp);
 	ft_free(&dst, &line, 1);
 	return (tmp);
