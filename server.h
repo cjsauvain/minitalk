@@ -6,7 +6,7 @@
 /*   By: jsauvain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 16:02:12 by jsauvain          #+#    #+#             */
-/*   Updated: 2022/07/06 13:43:38 by jsauvain         ###   ########.fr       */
+/*   Updated: 2022/07/13 08:01:51 by jsauvain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 # include "libft/libft.h"
 # include <signal.h>
 
-int		power(int nb, int power);
+int		power(int nb, int power, int sig);
+int		get_string(int sig, char *str);
 void	get_bin(int sig);
 
 #endif

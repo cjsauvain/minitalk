@@ -6,18 +6,20 @@
 /*   By: jsauvain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 15:05:45 by jsauvain          #+#    #+#             */
-/*   Updated: 2022/07/07 09:01:38 by jsauvain         ###   ########.fr       */
+/*   Updated: 2022/07/13 09:54:56 by jsauvain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "server.h"
 
-int	power(int nb, int power)
+int	power(int nb, int power, int sig)
 {
 	int	n;
 
 	n = nb;
-	if (power == 0)
+	if (sig == SIGUSR2)
+		return (0);
+	else if (power == 0)
 		return (1);
 	while (power > 1)
 	{
@@ -27,23 +29,54 @@ int	power(int nb, int power)
 	return (nb);
 }
 
+int	get_string(int sig, char *str)
+{
+	static int	i = 0;
+	static int	nb = 0;
+
+	str[i] += power(2, nb, sig);
+	nb++;
+	if (nb > 7 && str[i])
+	{
+		i++;
+		nb = 0;
+	}
+	else if (nb > 7 && str[i] == 0)
+	{
+		ft_printf("%s\n", str);
+		i = 0;
+		nb = 0;
+		free(str);
+		str = NULL;
+		return (1);
+	}
+	return (0);
+}
+
 void	get_bin(int sig)
 {
 	static int	i = 0;
-	static int	nb = 6;
+	static int	nb = 0;
+	static char	*str;
 
-	if (sig == SIGUSR1)
-		i += power(2, nb);
-	nb--;
-	if (nb < 0 && i)
+	if (nb <= 31)
 	{
-		ft_printf("%c", i);
-		i = 0;
-		nb = 6;
+		i += power(2, nb, sig);
+		nb++;
 	}
-	else if (nb < 0 && !i)
+	else
 	{
-		ft_printf("\n");
-		nb = 6;
+		if (str == NULL)
+			str = malloc(i * sizeof(char));
+		if (str == NULL)
+		{
+			ft_printf("Error : Malloc could not be done.");
+			exit(1);
+		}
+		if (get_string(sig, str) == 1)
+		{
+			i = 0;
+			nb = 0;
+		}
 	}
 }
