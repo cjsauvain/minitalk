@@ -6,7 +6,7 @@
 /*   By: jsauvain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 14:28:41 by jsauvain          #+#    #+#             */
-/*   Updated: 2022/07/13 09:31:25 by jsauvain         ###   ########.fr       */
+/*   Updated: 2022/07/13 16:57:52 by jsauvain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void	send_string(pid_t pid, char *c)
 		i--;
 	}
 }
+
 void	send_binaries(pid_t pid, char *c)
 {
 	send_lenght(pid, c);

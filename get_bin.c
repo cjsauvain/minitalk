@@ -6,7 +6,7 @@
 /*   By: jsauvain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 15:05:45 by jsauvain          #+#    #+#             */
-/*   Updated: 2022/07/13 09:54:56 by jsauvain         ###   ########.fr       */
+/*   Updated: 2022/07/13 17:40:41 by jsauvain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	get_string(int sig, char *str)
 	nb++;
 	if (nb > 7 && str[i])
 	{
+		//ft_printf("%c(%d)\n", str[i], str[i]);
 		i++;
 		nb = 0;
 	}
@@ -57,7 +58,7 @@ void	get_bin(int sig)
 {
 	static int	i = 0;
 	static int	nb = 0;
-	static char	*str;
+	static char	*str = NULL;
 
 	if (nb <= 31)
 	{
@@ -66,17 +67,18 @@ void	get_bin(int sig)
 	}
 	else
 	{
-		if (str == NULL)
-			str = malloc(i * sizeof(char));
-		if (str == NULL)
+		if (i)
 		{
-			ft_printf("Error : Malloc could not be done.");
-			exit(1);
+			str = malloc(i * sizeof(char));
+			if (str == NULL)
+			{
+				ft_printf("Error : Malloc could not be done.");
+				exit(1);
+			}
+			ft_printf("%p\n", str);
+			i = 0;
 		}
 		if (get_string(sig, str) == 1)
-		{
-			i = 0;
 			nb = 0;
-		}
 	}
 }
