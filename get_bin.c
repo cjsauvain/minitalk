@@ -6,28 +6,11 @@
 /*   By: jsauvain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 15:05:45 by jsauvain          #+#    #+#             */
-/*   Updated: 2022/07/13 17:40:41 by jsauvain         ###   ########.fr       */
+/*   Updated: 2022/07/14 17:13:49 by jsauvain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "server.h"
-
-int	power(int nb, int power, int sig)
-{
-	int	n;
-
-	n = nb;
-	if (sig == SIGUSR2)
-		return (0);
-	else if (power == 0)
-		return (1);
-	while (power > 1)
-	{
-		nb *= n;
-		power--;
-	}
-	return (nb);
-}
 
 int	get_string(int sig, char *str)
 {
@@ -38,7 +21,6 @@ int	get_string(int sig, char *str)
 	nb++;
 	if (nb > 7 && str[i])
 	{
-		//ft_printf("%c(%d)\n", str[i], str[i]);
 		i++;
 		nb = 0;
 	}
@@ -69,13 +51,12 @@ void	get_bin(int sig)
 	{
 		if (i)
 		{
-			str = malloc(i * sizeof(char));
+			str = ft_calloc(i, sizeof(char));
 			if (str == NULL)
 			{
 				ft_printf("Error : Malloc could not be done.");
 				exit(1);
 			}
-			ft_printf("%p\n", str);
 			i = 0;
 		}
 		if (get_string(sig, str) == 1)

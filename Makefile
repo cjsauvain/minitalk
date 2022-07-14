@@ -6,13 +6,13 @@
 #    By: jsauvain <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/30 12:04:13 by jsauvain          #+#    #+#              #
-#    Updated: 2022/07/08 09:56:29 by jsauvain         ###   ########.fr        #
+#    Updated: 2022/07/14 16:54:36 by jsauvain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = server.c get_bin.c
+SRCS = server.c get_bin.c server_utils.c
 
-SRCS_C = client.c send_binaries.c
+SRCS_C = client.c send_binaries.c client_utils.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -37,16 +37,16 @@ all: $(NAME)
 
 $(NAME): $(OBJS) $(OBJS_C)
 			$(CLR)
-			make -sC libft
-			$(GCC) $(FLAGS) -o $(NAME) $(OBJS) -Llibft -lft
-			$(GCC) $(FLAGS) -o $(NAME_C) $(OBJS_C) -Llibft -lft
+			make -sC ft_printf
+			$(GCC) $(FLAGS) -o $(NAME) -L. $(OBJS) -Lft_printf -lftprintf
+			$(GCC) $(FLAGS) -o $(NAME_C) $(OBJS_C)
 			
 clean:
-			make clean -sC libft
+			make clean -sC ft_printf
 			$(RM) $(OBJS) $(OBJS_C)
 
 fclean: clean
-			make fclean -sC libft
+			make fclean -sC ft_printf
 			$(RM) $(NAME) $(NAME_C)
 
 re: fclean all

@@ -1,16 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   client_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jsauvain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/01 17:37:08 by jsauvain          #+#    #+#             */
-/*   Updated: 2022/04/04 14:56:28 by jsauvain         ###   ########.fr       */
+/*   Created: 2022/07/14 16:36:23 by jsauvain          #+#    #+#             */
+/*   Updated: 2022/07/14 16:47:10 by jsauvain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "client.h"
+
+int	len_string(char *c)
+{
+	int	i;
+
+	i = 0;
+	while (c[i])
+		i++;
+	return (i);
+}
 
 int	ft_atoi(const char *nptr)
 {
@@ -40,3 +50,4 @@ int	ft_atoi(const char *nptr)
 		nb = -nb;
 	return (nb);
 }
+

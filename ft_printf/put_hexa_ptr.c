@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   put_hexa_ptr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jsauvain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/11 15:05:46 by jsauvain          #+#    #+#             */
-/*   Updated: 2022/04/12 14:26:07 by jsauvain         ###   ########.fr       */
+/*   Created: 2022/05/09 15:53:58 by jsauvain          #+#    #+#             */
+/*   Updated: 2022/05/09 17:21:12 by jsauvain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void*))
+int	put_hexa_ptr(unsigned long long ptr, int i)
 {
-	t_list	*tmp;
-
-	if (lst != NULL)
+	if (ptr >= 16)
 	{
-		while (*lst)
-		{
-			tmp = (*lst)->next;
-			ft_lstdelone(*lst, (del));
-			*lst = tmp;
-		}
-		lst = NULL;
+		put_hexa_ptr(ptr / 16, i);
+		put_hexa_ptr(ptr % 16, i);
 	}
+	else if (ptr < 16)
+	{
+		i++;
+		if (ptr % 16 <= 9)
+			ft_putchar((ptr % 16) + '0');
+		else if (ptr % 16 >= 10 && ptr % 16 <= 15)
+			ft_putchar((ptr % 16) + 'W');
+	}
+	return (i);
 }

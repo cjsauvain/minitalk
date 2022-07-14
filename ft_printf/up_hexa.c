@@ -1,40 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   low_hexa.c                                         :+:      :+:    :+:   */
+/*   up_hexa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jsauvain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/09 15:38:26 by jsauvain          #+#    #+#             */
-/*   Updated: 2022/06/01 13:26:13 by jsauvain         ###   ########.fr       */
+/*   Created: 2022/05/09 15:38:28 by jsauvain          #+#    #+#             */
+/*   Updated: 2022/05/09 16:20:25 by jsauvain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-int	low_hexa(unsigned int n, int i)
+int	up_hexa(unsigned int n, int i)
 {
 	if (n >= 16)
 	{
-		i = low_hexa(n / 16, i);
-		i = low_hexa(n % 16, i);
+		i++;
+		up_hexa(n / 16, i);
+		up_hexa(n % 16, i);
 	}
 	else if (n < 16)
 	{
+		i++;
 		if (n % 16 <= 9)
-			i += ft_putchar((n % 16) + '0');
+			ft_putchar((n % 16) + '0');
 		else if (n % 16 == 10)
-			i += ft_putchar('a');
+			ft_putchar('A');
 		else if (n % 16 == 11)
-			i += ft_putchar('b');
+			ft_putchar('B');
 		else if (n % 16 == 12)
-			i += ft_putchar('c');
+			ft_putchar('C');
 		else if (n % 16 == 13)
-			i += ft_putchar('d');
+			ft_putchar('D');
 		else if (n % 16 == 14)
-			i += ft_putchar('e');
+			ft_putchar('E');
 		else if (n % 16 == 15)
-			i += ft_putchar('f');
+			ft_putchar('F');
 	}
 	return (i);
 }

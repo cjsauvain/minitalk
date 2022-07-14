@@ -6,11 +6,11 @@
 /*   By: jsauvain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 15:38:15 by jsauvain          #+#    #+#             */
-/*   Updated: 2022/06/01 13:25:28 by jsauvain         ###   ########.fr       */
+/*   Updated: 2022/05/09 15:38:16 by jsauvain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
 int	ft_putnbr(int n, int i)
 {
@@ -26,8 +26,14 @@ int	ft_putnbr(int n, int i)
 		i++;
 	}
 	if (n >= 10)
-		i = ft_putnbr(n / 10, i);
+	{
+		i++;
+		ft_putnbr(n / 10, i);
+	}
 	if (n >= 0)
-		i += ft_putchar((n % 10) + '0');
+	{
+		i++;
+		ft_putchar((n % 10) + '0');
+	}
 	return (i);
 }

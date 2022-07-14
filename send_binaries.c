@@ -6,21 +6,11 @@
 /*   By: jsauvain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 14:28:41 by jsauvain          #+#    #+#             */
-/*   Updated: 2022/07/13 16:57:52 by jsauvain         ###   ########.fr       */
+/*   Updated: 2022/07/14 16:37:05 by jsauvain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "client.h"
-
-int	len_string(char *c)
-{
-	int	i;
-
-	i = 0;
-	while (c[i])
-		i++;
-	return (i);
-}
 
 void	send_lenght(pid_t pid, char *c)
 {
