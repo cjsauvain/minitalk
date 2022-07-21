@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client_utils.c                                     :+:      :+:    :+:   */
+/*   client_utils_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jsauvain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 16:36:23 by jsauvain          #+#    #+#             */
-/*   Updated: 2022/07/14 16:47:10 by jsauvain         ###   ########.fr       */
+/*   Updated: 2022/07/18 14:40:31 by jsauvain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "client.h"
+#include "client_bonus.h"
 
 int	len_string(char *c)
 {
@@ -50,4 +50,3 @@ int	ft_atoi(const char *nptr)
 		nb = -nb;
 	return (nb);
 }
-

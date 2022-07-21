@@ -6,7 +6,7 @@
 /*   By: jsauvain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 18:14:35 by jsauvain          #+#    #+#             */
-/*   Updated: 2022/07/14 12:12:59 by jsauvain         ###   ########.fr       */
+/*   Updated: 2022/07/20 09:23:31 by jsauvain         ###   ########.fr       */
 /*   Created: 2022/04/13 10:58:11 by jsauvain          #+#    #+#             */
 /*   Updated: 2022/04/27 10:40:46 by jsauvain         ###   ########.fr       */
 /*                                                                            */
@@ -24,12 +24,12 @@ int	to_find(const char *format, char c, va_list arg)
 		if (*format == c)
 		{
 			i += ft_formatting(format, arg);
-			format ++;
+			format += 2;
 		}
-		if (*format)
+		else if (*format)
 		{
-			format++;
 			i += ft_putchar(*format);
+			format++;
 		}
 	}
 	return (i);

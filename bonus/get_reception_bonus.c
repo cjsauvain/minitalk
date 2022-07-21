@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   get_reception_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jsauvain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/09 15:37:50 by jsauvain          #+#    #+#             */
-/*   Updated: 2022/07/20 09:23:53 by jsauvain         ###   ########.fr       */
+/*   Created: 2022/07/18 15:13:38 by jsauvain          #+#    #+#             */
+/*   Updated: 2022/07/19 16:05:37 by jsauvain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "client_bonus.h"
 
-int	ft_printf(const char *format, ...)
+void	get_reception(int sig)
 {
-	int		i;
-	va_list	arg;
-
-	i = 0;
-	va_start(arg, format);
-	i += ft_format(format, arg);
-	va_end(arg);
-	return (i);
+	if (sig == SIGUSR1)
+	{
+		ft_printf("Message received !\n");
+		exit(1);
+	}
 }

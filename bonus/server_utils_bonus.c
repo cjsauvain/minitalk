@@ -1,32 +1,58 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server_utils.c                                     :+:      :+:    :+:   */
+/*   server_utils_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jsauvain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 16:45:35 by jsauvain          #+#    #+#             */
-/*   Updated: 2022/07/14 17:15:37 by jsauvain         ###   ########.fr       */
+/*   Updated: 2022/07/18 15:34:01 by jsauvain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "server.h"
+#include "server_bonus.h"
 
-void	*ft_calloc(int nmemb, int size)
+int	ft_strlen(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
+
+char	*ft_strdup(char *s)
+{
+	int		i;
+	char	*duplicate;
+
+	i = 0;
+	duplicate = malloc((ft_strlen(s) + 1) * sizeof(char));
+	if (duplicate == NULL)
+		return (duplicate);
+	while (i < ft_strlen(s) + 1)
+	{
+		duplicate[i] = s[i];
+		i++;
+	}
+	return (duplicate);
+}
+
+void	*ft_calloc(int nmemb)
 {
 	int		i;
 	void	*calloc;
 	char	*cast;
 
 	i = 0;
-	ft_printf("%d\n", size);
-	if ((size > 0 && size <= 2147483647) || (nmemb > 0 && nmemb <= 2147483647))
+	if (nmemb > 0 && nmemb <= 2147483647)
 	{
-		calloc = malloc(nmemb * size);
+		calloc = malloc(nmemb * sizeof(char));
 		cast = calloc;
 		if (calloc == NULL)
 			return (calloc);
-		while (i < nmemb * size)
+		while (i < nmemb)
 		{
 			cast[i] = 0;
 			i++;

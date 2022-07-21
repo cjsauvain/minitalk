@@ -6,7 +6,7 @@
 /*   By: jsauvain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 15:05:45 by jsauvain          #+#    #+#             */
-/*   Updated: 2022/07/14 17:13:49 by jsauvain         ###   ########.fr       */
+/*   Updated: 2022/07/16 14:52:09 by jsauvain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	get_bin(int sig)
 	{
 		if (i)
 		{
-			str = ft_calloc(i, sizeof(char));
+			str = ft_calloc(i);
 			if (str == NULL)
 			{
 				ft_printf("Error : Malloc could not be done.");

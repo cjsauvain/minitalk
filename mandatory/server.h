@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   server.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jsauvain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/09 15:37:50 by jsauvain          #+#    #+#             */
-/*   Updated: 2022/07/20 09:23:53 by jsauvain         ###   ########.fr       */
+/*   Created: 2022/07/05 16:02:12 by jsauvain          #+#    #+#             */
+/*   Updated: 2022/07/18 14:41:58 by jsauvain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#ifndef SERVER_H
+# define SERVER_H
 
-int	ft_printf(const char *format, ...)
-{
-	int		i;
-	va_list	arg;
+# include "../ft_printf/ft_printf.h"
+# include <stdlib.h>
+# include <signal.h>
 
-	i = 0;
-	va_start(arg, format);
-	i += ft_format(format, arg);
-	va_end(arg);
-	return (i);
-}
+void	*ft_calloc(int nmemb);
+int		power(int nb, int power, int sig);
+int		get_string(int sig, char *str);
+void	get_bin(int sig);
+
+#endif

@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   server_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jsauvain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/09 15:37:50 by jsauvain          #+#    #+#             */
-/*   Updated: 2022/07/20 09:23:53 by jsauvain         ###   ########.fr       */
+/*   Created: 2022/06/30 11:06:03 by jsauvain          #+#    #+#             */
+/*   Updated: 2022/07/18 14:39:53 by jsauvain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "server_bonus.h"
 
-int	ft_printf(const char *format, ...)
+int	main(void)
 {
-	int		i;
-	va_list	arg;
+	pid_t	pid;
 
-	i = 0;
-	va_start(arg, format);
-	i += ft_format(format, arg);
-	va_end(arg);
-	return (i);
+	pid = getpid();
+	ft_printf("%d\n", pid);
+	signal(SIGUSR1, get_bin);
+	signal(SIGUSR2, get_bin);
+	while (1)
+		usleep(1);
 }
