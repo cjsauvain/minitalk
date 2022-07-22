@@ -6,18 +6,21 @@
 #    By: jsauvain <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/30 12:04:13 by jsauvain          #+#    #+#              #
-#    Updated: 2022/07/20 09:15:55 by jsauvain         ###   ########.fr        #
+#    Updated: 2022/07/22 15:28:16 by jsauvain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = mandatory/server.c mandatory/get_bin.c mandatory/server_utils.c
+INCLUDE = -I srcs/libft -I includes
 
-SRCS_C = mandatory/client.c mandatory/send_binaries.c mandatory/client_utils.c
+SRCS = srcs/mandatory/server.c srcs/mandatory/get_bin.c
 
-SRCB = bonus/server_bonus.c bonus/get_bin_bonus.c bonus/server_utils_bonus.c
+SRCS_C = srcs/mandatory/client.c srcs/mandatory/send_binaries.c \
+		srcs/mandatory/check_errors.c
 
-SRCB_C = bonus/client_bonus.c bonus/send_binaries_bonus.c bonus/client_utils_bonus.c \
-		bonus/get_reception_bonus.c
+SRCB = srcs/bonus/server_bonus.c srcs/bonus/get_bin_bonus.c
+
+SRCB_C = srcs/bonus/client_bonus.c srcs/bonus/send_binaries_bonus.c \
+		srcs/bonus/check_errors_bonus.c srcs/bonus/get_reception_bonus.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -40,28 +43,28 @@ RM = rm -f
 CLR = clear
 
 .c.o:
-			$(GCC) $(FLAGS) -c $< -o $(<:.c=.o)
+			$(GCC) $(FLAGS) $(INCLUDE) -c  $< -o $(<:.c=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJS) $(OBJS_C)
-			$(CLR)
-			make -sC ft_printf
-			$(GCC) $(FLAGS) -o $(NAME) -Lmandatory $(OBJS) -Lft_printf -lftprintf
-			$(GCC) $(FLAGS) -o $(NAME_C) $(OBJS_C)
+		$(CLR)
+		make -sC srcs/libft
+		$(GCC) $(FLAGS) $(OBJS) $(INCLUDE) -Lsrcs/libft -lft -o $(NAME)
+		$(GCC) $(FLAGS) $(OBJS_C) $(INCLUDE) -Lsrcs/libft -lft -o $(NAME_C)
 			
 bonus:	$(OBJB) $(OBJB_C)
 		$(CLR)
-		make -sC ft_printf
-		$(GCC) $(FLAGS) -o $(NAME) -Lbonus $(OBJB) -Lft_printf -lftprintf
-		$(GCC) $(FLAGS) -o $(NAME_C) -Lbonus $(OBJB_C) -Lft_printf -lftprintf
+		make -sC srcs/libft
+		$(GCC) $(FLAGS) $(OBJB) $(INCLUDE) -Lsrcs/libft -lft -o $(NAME)
+		$(GCC) $(FLAGS) $(OBJB_C) $(INCLUDE) -Lsrcs/libft -lft -o $(NAME_C)
 
 clean:
-			make clean -sC ft_printf
+			make clean -sC srcs/libft
 			$(RM) $(OBJS) $(OBJS_C) $(OBJB) $(OBJB_C)
 
 fclean: clean
-			make fclean -sC ft_printf
+			make fclean -sC srcs/libft
 			$(RM) $(NAME) $(NAME_C)
 
 re: fclean all
