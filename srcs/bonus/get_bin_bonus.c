@@ -6,7 +6,7 @@
 /*   By: jsauvain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 15:05:45 by jsauvain          #+#    #+#             */
-/*   Updated: 2022/07/22 10:53:22 by jsauvain         ###   ########.fr       */
+/*   Updated: 2022/07/27 16:08:02 by jsauvain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,19 +54,22 @@ int	get_string(int sig, char *str)
 
 	str[i] += power(2, nb, sig);
 	nb++;
-	if (nb > 7 && str[i])
+	if (nb == 8)
 	{
-		i++;
-		nb = 0;
-	}
-	else if (nb > 7 && str[i] == 0)
-	{
-		ft_printf("%s\n", str);
-		i = 0;
-		nb = 0;
-		free(str);
-		str = NULL;
-		return (1);
+		if (str[i])
+		{
+			i++;
+			nb = 0;
+		}
+		else if (str[i] == 0)
+		{
+			ft_printf("%s\n", str);
+			i = 0;
+			nb = 0;
+			free(str);
+			str = NULL;
+			return (1);
+		}
 	}
 	return (0);
 }
@@ -81,7 +84,7 @@ void	get_bin(int sig)
 		pid = get_binaries(sig);	
 	else if (len == 0)
 		len = get_binaries(sig);
-	else if (pid)
+	else
 	{
 		if (len != -1)
 		{

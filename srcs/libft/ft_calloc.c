@@ -6,7 +6,7 @@
 /*   By: jsauvain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 16:28:05 by jsauvain          #+#    #+#             */
-/*   Updated: 2022/04/09 11:43:42 by jsauvain         ###   ########.fr       */
+/*   Updated: 2022/07/24 11:20:01 by jsauvain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	char	*cast;
 
 	i = 0;
-	if (size <= 4294967295 || nmemb <= 4294967295)
+	if (size <= 2147483647 || nmemb <= 2147483647)
 	{
 		calloc = malloc(nmemb * size);
 		cast = calloc;

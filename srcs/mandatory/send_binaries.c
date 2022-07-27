@@ -6,7 +6,7 @@
 /*   By: jsauvain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 14:28:41 by jsauvain          #+#    #+#             */
-/*   Updated: 2022/07/24 10:42:12 by jsauvain         ###   ########.fr       */
+/*   Updated: 2022/07/27 16:46:11 by jsauvain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	send_lenght(pid_t pid, char *c)
 			kill(pid, SIGUSR1);
 		else
 			kill(pid, SIGUSR2);
-		usleep(50);
+		usleep(100);
 		i++;
 	}
 }
@@ -43,7 +43,7 @@ void	send_string(pid_t pid, char *c)
 				kill(pid, SIGUSR2);
 			else if ((*c >> i & 1) == 1)
 				kill(pid, SIGUSR1);
-			usleep(50);
+			usleep(100);
 			i++;
 		}
 		c++;
@@ -52,7 +52,7 @@ void	send_string(pid_t pid, char *c)
 	while (i <= 7)
 	{
 		kill(pid, SIGUSR2);
-		usleep(50);
+		usleep(100);
 		i++;
 	}
 }
