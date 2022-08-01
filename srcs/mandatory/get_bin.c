@@ -6,7 +6,7 @@
 /*   By: jsauvain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 15:05:45 by jsauvain          #+#    #+#             */
-/*   Updated: 2022/08/01 13:57:33 by jsauvain         ###   ########.fr       */
+/*   Updated: 2022/08/01 15:38:43 by jsauvain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,10 @@ int	get_client_pid(int sig)
 
 void	get_bin(int sig)
 {
-	static int	nb = 0;
-	static int	c_pid = 0;
-	static char	*str = NULL;
-	static char	tmp = 0;;
+	static int		nb = 0;
+	static pid_t	c_pid = 0;
+	static char		*str = NULL;
+	static char		tmp = 0;;
 
 	if (c_pid == 0)
 		c_pid = get_client_pid(sig);
@@ -71,6 +71,7 @@ void	get_bin(int sig)
 				str = NULL;
 				tmp = 0;
 				nb = 0;
+				c_pid = 0;
 				return ;
 			}
 			str = ft_strjoin(str, tmp);
@@ -78,5 +79,6 @@ void	get_bin(int sig)
 			nb = 0;
 		}
 	}
-	kill(c_pid, SIGUSR1);
+	if (c_pid)
+		kill(c_pid, SIGUSR1);
 }

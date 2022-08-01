@@ -6,7 +6,7 @@
 /*   By: jsauvain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 12:10:56 by jsauvain          #+#    #+#             */
-/*   Updated: 2022/08/01 13:55:03 by jsauvain         ###   ########.fr       */
+/*   Updated: 2022/08/01 15:30:00 by jsauvain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,15 @@ int	main(int argc, char **argv)
 {
 	pid_t	c_pid;
 	
+	signal(SIGUSR1, send_string);
+	signal(SIGUSR2, end_communication);
 	if (check_errors(argc, argv) == -1 || argv[2][0] == '\0')
 		return (0);
 	var.g_pid = ft_atol(argv[1]);
 	c_pid = getpid();
 	var.string = argv[2];
 	send_pid(c_pid);
-	signal(SIGUSR1, send_string);
-	signal(SIGUSR2, end_communication);
+	while (1)
+		usleep(1);
 	return (0);
 }
