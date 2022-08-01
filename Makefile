@@ -6,7 +6,7 @@
 #    By: jsauvain <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/30 12:04:13 by jsauvain          #+#    #+#              #
-#    Updated: 2022/08/01 15:57:16 by jsauvain         ###   ########.fr        #
+#    Updated: 2022/08/01 17:18:53 by jsauvain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ NAME_C = client
 RM = rm -f
 
 CLR = clear
+
 ifdef	BONUS
 			SRCS	=
 			SRCS_C	=
@@ -60,7 +61,7 @@ $(NAME): $(OBJS) $(OBJS_C)
 		$(GCC) $(FLAGS) $(OBJS_C) $(INCLUDE) -Lsrcs/libft -lft -o $(NAME_C)
 			
 bonus:	$(NAME)
-		make BONUS=1
+		@make BONUS=1
 
 clean:
 			make clean -sC srcs/libft
