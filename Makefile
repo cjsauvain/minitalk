@@ -6,7 +6,7 @@
 #    By: jsauvain <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/30 12:04:13 by jsauvain          #+#    #+#              #
-#    Updated: 2022/08/01 11:42:21 by jsauvain         ###   ########.fr        #
+#    Updated: 2022/08/01 15:57:16 by jsauvain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRCS_C = srcs/mandatory/client.c srcs/mandatory/send_bin.c \
 SRCB = srcs/bonus/server_bonus.c srcs/bonus/get_bin_bonus.c
 
 SRCB_C = srcs/bonus/client_bonus.c srcs/bonus/send_bin_bonus.c \
-		srcs/bonus/check_errors_bonus.c srcs/bonus/get_reception_bonus.c
+		srcs/bonus/check_errors_bonus.c
 
 OBJS = $(SRCS:.c=.o)
 

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_bin_bonus.c                                    :+:      :+:    :+:   */
+/*   get_bin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jsauvain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 15:05:45 by jsauvain          #+#    #+#             */
-/*   Updated: 2022/07/27 16:08:02 by jsauvain         ###   ########.fr       */
+/*   Updated: 2022/08/01 15:38:43 by jsauvain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "server_bonus.h"
+#include "server.h"
 
-int	power(int nb, int power, int sig)
+int	ft_power(int nb, int power, int sig)
 {
 	int	n;
 
@@ -29,78 +29,56 @@ int	power(int nb, int power, int sig)
 	return (nb);
 }
 
-int	get_binaries(int sig)
+int	get_client_pid(int sig)
 {
 	static int	i = 0;
 	static int	nb = 0;
-	int			tmp;
+	int			c_pid;
 
 	if (nb <= 30)
 	{
-		i += power(2, nb, sig);
+		i += ft_power(2, nb, sig);
 		nb++;
 		return (0);
 	}
-	tmp = i;
+	i += ft_power(2, nb, sig);
+	c_pid = i;
 	i = 0;
 	nb = 0;
-	return (tmp);
-}
-
-int	get_string(int sig, char *str)
-{
-	static int	i = 0;
-	static int	nb = 0;
-
-	str[i] += power(2, nb, sig);
-	nb++;
-	if (nb == 8)
-	{
-		if (str[i])
-		{
-			i++;
-			nb = 0;
-		}
-		else if (str[i] == 0)
-		{
-			ft_printf("%s\n", str);
-			i = 0;
-			nb = 0;
-			free(str);
-			str = NULL;
-			return (1);
-		}
-	}
-	return (0);
+	return (c_pid);
 }
 
 void	get_bin(int sig)
 {
+	static int		nb = 0;
+	static pid_t	c_pid = 0;
 	static char		*str = NULL;
-	static pid_t	pid = 0;
-	static int		len = 0;
+	static char		tmp = 0;;
 
-	if (pid == 0)
-		pid = get_binaries(sig);	
-	else if (len == 0)
-		len = get_binaries(sig);
+	if (c_pid == 0)
+		c_pid = get_client_pid(sig);
 	else
 	{
-		if (len != -1)
+		tmp += ft_power(2, nb, sig);
+		nb++;
+		if (nb == 8)
 		{
-			str = ft_calloc(len, sizeof(char));
-			if (str == NULL)
+			if (tmp == 0)
 			{
-				ft_printf("Error : Malloc could not be done.\n");
-				exit(1);
+				kill(c_pid, SIGUSR2);
+				ft_printf("%s\n", str);
+				free(str);
+				str = NULL;
+				tmp = 0;
+				nb = 0;
+				c_pid = 0;
+				return ;
 			}
-			len = -1;
-		}
-		if (get_string(sig, str) == 1)
-		{	
-			kill(pid, SIGUSR1);
-			pid = 0;
-			len = 0;
+			str = ft_strjoin(str, tmp);
+			tmp = 0;
+			nb = 0;
 		}
 	}
+	if (c_pid)
+		kill(c_pid, SIGUSR1);
 }
