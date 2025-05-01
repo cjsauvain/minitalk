@@ -15,7 +15,7 @@
 ## 🚀 Compilation && Execution
 
 ```bash
-make
+make [bonus]
 
 ./server
   <PID>   (stdout)
