@@ -6,7 +6,7 @@
 /*   By: jsauvain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 14:20:35 by jsauvain          #+#    #+#             */
-/*   Updated: 2022/08/01 13:59:07 by jsauvain         ###   ########.fr       */
+/*   Updated: 2025/05/01 14:35:06 by jsauvain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ typedef struct s_client
 	char	*string;
 }	t_client;
 
-t_client	var;
+extern t_client	var;
 
 int		check_pid(char *str);
 int		check_argc(int argc);

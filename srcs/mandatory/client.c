@@ -6,11 +6,13 @@
 /*   By: jsauvain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 12:10:56 by jsauvain          #+#    #+#             */
-/*   Updated: 2022/08/01 15:30:00 by jsauvain         ###   ########.fr       */
+/*   Updated: 2025/05/01 14:36:10 by jsauvain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "client.h"
+
+t_client var;
 
 int	main(int argc, char **argv)
 {
