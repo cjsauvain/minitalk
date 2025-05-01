@@ -10,7 +10,7 @@
 
 ## ✅ Prérequis
 
-- Compilateur C
+- gcc
 
 ## 🚀 Compilation && Execution
 
